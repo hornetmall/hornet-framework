@@ -8,6 +8,7 @@
         <module>hornet-annotation</module>
         <module>hornet-common</module>
         <module>hornet-spring-boot-starter</module>
+        <module>hornet-processor-test</module>
     </modules>
     <parent>
         <groupId>com.hornetmall</groupId>
@@ -17,12 +18,51 @@
 
     <groupId>com.hornetmall</groupId>
     <artifactId>hornet-framework</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>${revision}${changelist}</version>
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>14</maven.compiler.source>
-        <maven.compiler.target>14</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.hornetmall</groupId>
+                <artifactId>hornet-annotation</artifactId>
+                <version>${hornet-framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hornetmall</groupId>
+                <artifactId>hornet-common</artifactId>
+                <version>${hornet-framework.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hornetmall</groupId>
+                <artifactId>hornet-processor</artifactId>
+                <version>${hornet-framework.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <showWarnings>true</showWarnings>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
 
 </project>
